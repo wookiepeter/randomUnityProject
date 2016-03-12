@@ -8,7 +8,7 @@
       "defence": 4,
       "vitality": 2
     },
-    "description": "Gloves made from steel",
+    "description": " (Johannes streichelt Matthes - ",
     "stackable": false,
     "rarity": 2,
     "slug" :  "cursorSword_gold"
@@ -23,7 +23,7 @@
       "defence": 40,
       "vitality": 20
     },
-    "description": "RobinHood",
+    "description": "- KOPF! ^^",
     "stackable": true,
     "rarity": 1,
     "slug" :  "cursorSword_silver"

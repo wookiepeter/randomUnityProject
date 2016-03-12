@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using System;
 
-public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //Speichern die Events, zb ich klicke auf ein Objekt und kann es bewegen - 
     //wichtig, wir schieben das Item vor das parent objekt und EndDrag wieder zurück
@@ -13,12 +13,14 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public int slot;
 
     private Inventory inv;
+    private ToolTip toolTip;
     //private Transform originalParent;
     private Vector2 offset;
 
     void Start()
     {
         inv = GameObject.Find("Inventory").GetComponent<Inventory>();
+        toolTip = inv.GetComponent<ToolTip>();
     }
      public void OnBeginDrag(PointerEventData eventData)
     {
@@ -48,5 +50,15 @@ public class ItemData : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         this.transform.position = inv.slots[slot].transform.position;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        toolTip.Activate(item); 
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        toolTip.Deactivate();
     }
 }
