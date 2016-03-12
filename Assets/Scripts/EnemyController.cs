@@ -24,27 +24,9 @@ public class EnemyController : MonoBehaviour {
         if (!playerRange)
         {
             
-            rndPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y) - new Vector2(Random.Range(-1f, 1f), 0);
-            rb2d.velocity = rndPosition.normalized * speed;
         }
 
 	}
 
-    void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            Debug.Log(" Reichweite TRUE");
-            playerRange = true;
-            rb2d.velocity = movementVector.normalized * speed;
-        }
-        else
-        {
-            playerRange = false;
-            Debug.Log(" NICHT Reichweite false");
-        }
-           
-       
-    }
-   
+
 }

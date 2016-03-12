@@ -5,12 +5,13 @@ public class EnemyMoveController : MonoBehaviour {
 
     Rigidbody2D rb2d;
 
+    public float speed;
+    Vector2 playerPosition;
+    Vector2 moveVector;
+    Vector2 vectorTowardsPlayer;
 
-    public float        speed;
-    Vector2             playerPosition;
-    Vector2             movementVector;
     EnemyViewController enemyViewController;
-    bool                playerInViewRadius;
+    bool playerInViewRadius;
 
 	// Use this for initialization
 	void Start () {
@@ -20,23 +21,26 @@ public class EnemyMoveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        moveVector = Vector2.zero;
 
+        playerInViewRadius = enemyViewController.getPlayerInViewRadius();
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-        movementVector = playerPosition - new Vector2(transform.position.x, transform.position.y);
+        vectorTowardsPlayer = playerPosition - new Vector2(transform.position.x, transform.position.y);
 
-
-
-	}
-
-    void FixedUpdate()
-    {
-        if (enemyViewController.getPlayerInViewRadius())
+        if (playerInViewRadius)
         {
-            rb2d.velocity = movementVector.normalized * speed;
+            moveVector = vectorTowardsPlayer;
         }
         else
         {
-            rb2d.velocity = Vector2.zero;
+            Vector2 rndPosition;
+            rndPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y) + new Vector2(Random.Range(-1f, 1f), 0);
+            moveVector = new Vector2(transform.position.x, transform.position.y) - rndPosition;
         }
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.velocity = moveVector.normalized * speed;
     }
 }
