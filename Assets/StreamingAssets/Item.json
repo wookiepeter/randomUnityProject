@@ -1,0 +1,31 @@
+[
+  {
+    "id": 0,
+    "title": "Sword",
+    "value": 6,
+    "stats": {
+      "power": 1,
+      "defence": 4,
+      "vitality": 2
+    },
+    "description": "Gloves made from steel",
+    "stackable": false,
+    "rarity": 2,
+    "slug" :  "cursorSword_gold"
+
+  },
+  {
+   "id": 1,
+    "title": "Arrow",
+    "value": 10,
+    "stats": {
+      "power": 10,
+      "defence": 40,
+      "vitality": 20
+    },
+    "description": "RobinHood",
+    "stackable": true,
+    "rarity": 1,
+    "slug" :  "cursorSword_silver"
+  }
+]
