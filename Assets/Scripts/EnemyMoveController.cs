@@ -21,11 +21,18 @@ public class EnemyMoveController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        moveVector = Vector2.zero;
+       
 
         playerInViewRadius = enemyViewController.getPlayerInViewRadius();
         playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         vectorTowardsPlayer = playerPosition - new Vector2(transform.position.x, transform.position.y);
+
+
+    }
+
+    void FixedUpdate()
+    {
+        moveVector = Vector2.zero;
 
         if (playerInViewRadius)
         {
@@ -37,10 +44,7 @@ public class EnemyMoveController : MonoBehaviour {
             rndPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y) + new Vector2(Random.Range(-1f, 1f), 0);
             moveVector = new Vector2(transform.position.x, transform.position.y) - rndPosition;
         }
-    }
 
-    void FixedUpdate()
-    {
         rb2d.velocity = moveVector.normalized * speed;
     }
 }

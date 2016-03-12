@@ -17,7 +17,7 @@ public class EnemyViewController : MonoBehaviour {
         return playerInViewRadius;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         playerInViewRadius = false;
     }
