@@ -15,7 +15,7 @@ public class Player : MonoBehaviour {
 
     public bool isDead { get; private set; }
 
-    public void Start()
+    public void Awake()
     {
         _controller = GetComponent<CharacterController2D>();
         _isFacingRight = transform.localScale.x > 0; //Schauen wir rechts?

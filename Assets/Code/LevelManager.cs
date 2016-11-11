@@ -16,8 +16,7 @@ class LevelManager : MonoBehaviour
     {
         get
         {
-            var secondDifference = (int)(bonusCuoffSeconds - runningTime.TotalMilliseconds);
-            Console.WriteLine("Mathf.Max(0, secondDifference) * bonusSecondMultiplier;");
+            var secondDifference = (int)(bonusCuoffSeconds - runningTime.TotalSeconds);
             return Mathf.Max(0, secondDifference) * bonusSecondMultiplier;
             
         }
