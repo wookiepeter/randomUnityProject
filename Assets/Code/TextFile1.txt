@@ -1,0 +1,8 @@
+﻿Mathf.Lerp
+https://docs.unity3d.com/ScriptReference/Mathf.Lerp.html
+- > public static float Lerp(float a, float b, float t); 
+=> float The interpolated float result between the two float values. 
+
+When t = 0 returns a.
+When t = 1 return b.
+When t = 0.5 returns the midpoint of a and b.
