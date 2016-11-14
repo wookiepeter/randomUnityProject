@@ -65,6 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\AutoDestroyParticleSystem.cs" />
     <Compile Include="Assets\Code\BackgroundParrallax.cs" />
     <Compile Include="Assets\Code\CameraController.cs" />
     <Compile Include="Assets\Code\CharacterController2D.cs" />
@@ -76,10 +77,12 @@
     <Compile Include="Assets\Code\GameHUD.cs" />
     <Compile Include="Assets\Code\GameManager.cs" />
     <Compile Include="Assets\Code\InstaKill.cs" />
+    <Compile Include="Assets\Code\IPlayerRespawnListener.cs" />
     <Compile Include="Assets\Code\JumpPlatform.cs" />
     <Compile Include="Assets\Code\LevelManager.cs" />
     <Compile Include="Assets\Code\PathDefinition.cs" />
     <Compile Include="Assets\Code\Player.cs" />
+    <Compile Include="Assets\Code\PointStar.cs" />
     <Compile Include="Assets\Code\SortParticleSystem.cs" />
   </ItemGroup>
   <ItemGroup>

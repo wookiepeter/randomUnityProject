@@ -16,7 +16,8 @@ class LevelManager : MonoBehaviour
     {
         get
         {
-            var secondDifference = (int)(bonusCuoffSeconds - runningTime.TotalSeconds);
+            var secondDifference = (int)(bonusCuoffSeconds - runningTime.Seconds);
+            Console.WriteLine("Mathf.Max(0, secondDifference) * bonusSecondMultiplier;");
             return Mathf.Max(0, secondDifference) * bonusSecondMultiplier;
             
         }
@@ -30,7 +31,7 @@ class LevelManager : MonoBehaviour
     public Checkpoint DebugSpawn;
     public int bonusCuoffSeconds;           //max time player can go to the next point - bnonus trigger
     public int bonusSecondMultiplier;       //how many points over
-
+    
     public void Awake()
     {
         Instance = this;
@@ -44,6 +45,28 @@ class LevelManager : MonoBehaviour
         cameraController = FindObjectOfType<CameraController>();
 
         _started = DateTime.UtcNow; //Auf now setzten
+
+        //finde alle IPlayerRespawnListener!
+        //Durschsuche alles in der Szene nach MonoBehaviour(Geht nicht IPLayer... weil es nicht von Unity.Engine ist) und filtere nach Typ "IPlayer.." 
+        var listeners = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerRespawnListener>();
+        foreach (var listerner in listeners)
+        {
+            //iterieren von letzten Punkt zum ersten Punkt
+            for (var i = _checkpoints.Count - 1; i >= 0; i--)
+            {
+                // Distance = Stern - checkpoint (Distance vom Checkpoint und aktuelles Object)
+                var distance = ((MonoBehaviour)listerner).transform.position.x - _checkpoints[i].transform.position.x;
+                if (distance < 0)
+                    continue;
+                else
+                {
+                    _checkpoints[i].AssignObjectToCheckpoint(listerner);
+                    break;
+                }
+
+
+            }
+        }
 
 
 #if UNITY_EDITOR //Wird nur aufgerufen wenn wir unser Lvl bearbeiten -> Späte kommt das neme rein
@@ -75,6 +98,8 @@ class LevelManager : MonoBehaviour
         GameManager.Instance.AddPoints(CurrentTimeBonus);
         _savedPoints = GameManager.Instance.points;
         _started = DateTime.UtcNow;
+
+
 
     }
     public void KillPlayer()
